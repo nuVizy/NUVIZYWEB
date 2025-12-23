@@ -1,6 +1,9 @@
 import { FormEvent, useState } from 'react';
-import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
+import Card from '../components/ui/Card';
+import Input from '../components/ui/Input';
+import Section from '../components/ui/Section';
+import SectionHeading from '../components/ui/SectionHeading';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 interface FormState {
@@ -56,100 +59,139 @@ const Contact = () => {
   };
 
   return (
-    <Section className="pt-16">
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div>
-          <p className="text-xs uppercase tracking-wide text-slate">Contact</p>
-          <h1 className="text-4xl font-serif">Tell us what you are building.</h1>
-          <p className="text-slate mt-3 max-w-xl">
-            Email studio@nuviz.studio or use the form. We are based in Brooklyn and often work in Toronto and Los Angeles.
-          </p>
-          <ul className="mt-4 text-sm text-slate space-y-1">
-            <li>Response within one business day.</li>
-            <li>Transparent scopes and rights.</li>
-            <li>Lean crews, premium delivery.</li>
-          </ul>
-        </div>
+    <div>
+      <Section size="lg" padClassName="pt-28 pb-10 md:pt-32 md:pb-12" className="ctx-grid">
+        <SectionHeading
+          kicker="Contact"
+          title="Tell us what you’re building"
+          description={
+            <>
+              <p>Send a brief, a reference, or a rough idea. We’ll reply with direction, structure, and a timeline.</p>
+              <p className="mt-3">Based in Paphos, Cyprus (UK-built). Working across Cyprus, the UK and Europe.</p>
+              <p className="mt-3">
+                Prefer email? <span className="text-[var(--text)]">studio@nuviz.studio</span>
+              </p>
+            </>
+          }
+        />
 
-        <div className="border border-slate/30 rounded-subtle p-6 bg-white shadow-soft">
-          {submitted ? (
-            <div className="space-y-3">
-              <h2 className="font-serif text-2xl">We got it.</h2>
-              <p className="text-slate">Thanks for reaching out. We will respond with next steps shortly.</p>
-              <Button onClick={() => setSubmitted(false)}>Send another request</Button>
+        <div className="mt-6 grid gap-3 sm:grid-cols-3 text-sm">
+          {["Response within one business day", "Transparent scope + rights", "Small crews, clean delivery"].map((t) => (
+            <div key={t} className="border border-[var(--accent-dim)] rounded-2xl px-4 py-3 text-[var(--muted)]">
+              {t}
             </div>
-          ) : (
-            <form className="space-y-4" onSubmit={handleSubmit} noValidate>
-              <div>
-                <label className="block text-sm font-semibold">Name</label>
-                <input
-                  type="text"
-                  value={form.name}
-                  onChange={e => handleChange('name', e.target.value)}
-                  className="mt-1 w-full border border-slate/30 rounded-subtle px-3 py-2 focus:outline-none focus:border-charcoal"
-                  required
-                />
-                {errors.name && <p className="text-red-600 text-xs mt-1">{errors.name}</p>}
-              </div>
-              <div>
-                <label className="block text-sm font-semibold">Email</label>
-                <input
-                  type="email"
-                  value={form.email}
-                  onChange={e => handleChange('email', e.target.value)}
-                  className="mt-1 w-full border border-slate/30 rounded-subtle px-3 py-2 focus:outline-none focus:border-charcoal"
-                  required
-                />
-                {errors.email && <p className="text-red-600 text-xs mt-1">{errors.email}</p>}
-              </div>
-              <div>
-                <label className="block text-sm font-semibold">Project type</label>
-                <select
-                  value={form.projectType}
-                  onChange={e => handleChange('projectType', e.target.value)}
-                  className="mt-1 w-full border border-slate/30 rounded-subtle px-3 py-2 focus:outline-none focus:border-charcoal"
-                  required
-                >
-                  <option value="">Select</option>
-                  <option value="Photography">Photography</option>
-                  <option value="Videography">Videography</option>
-                  <option value="Music Video">Music Video</option>
-                  <option value="Design">Design</option>
-                </select>
-                {errors.projectType && <p className="text-red-600 text-xs mt-1">{errors.projectType}</p>}
-              </div>
-              <div>
-                <label className="block text-sm font-semibold">Budget range</label>
-                <select
-                  value={form.budget}
-                  onChange={e => handleChange('budget', e.target.value)}
-                  className="mt-1 w-full border border-slate/30 rounded-subtle px-3 py-2 focus:outline-none focus:border-charcoal"
-                  required
-                >
-                  <option value="">Select</option>
-                  <option value="Under 3k">Under $3k</option>
-                  <option value="3k-7k">$3k – $7k</option>
-                  <option value="7k-15k">$7k – $15k</option>
-                  <option value="15k+">$15k+</option>
-                </select>
-                {errors.budget && <p className="text-red-600 text-xs mt-1">{errors.budget}</p>}
-              </div>
-              <div>
-                <label className="block text-sm font-semibold">Project notes</label>
-                <textarea
-                  value={form.message}
-                  onChange={e => handleChange('message', e.target.value)}
-                  className="mt-1 w-full border border-slate/30 rounded-subtle px-3 py-2 h-28 focus:outline-none focus:border-charcoal"
-                  required
-                />
-                {errors.message && <p className="text-red-600 text-xs mt-1">{errors.message}</p>}
-              </div>
-              <Button type="submit">Send request</Button>
-            </form>
-          )}
+          ))}
         </div>
-      </div>
-    </Section>
+      </Section>
+
+      <Section size="lg" tone="borderTop" padClassName="py-12 md:py-16">
+        <div className="grid gap-10 lg:grid-cols-12 items-start">
+          <div className="lg:col-span-5">
+            <SectionHeading
+              kicker="What to send"
+              title="The three things that help"
+              description={
+                <ul className="mt-2 space-y-2">
+                  <li>• A reference (links, screenshots, moods)</li>
+                  <li>• The outcome you need (deliverables + where it will live)</li>
+                  <li>• Any constraints (date, location, budget range)</li>
+                </ul>
+              }
+            />
+          </div>
+
+          <div className="lg:col-span-7">
+            <Card className="p-7">
+              {submitted ? (
+                <div className="space-y-3">
+                  <h2 className="font-mono text-2xl text-[var(--text)]">Received.</h2>
+                  <p className="text-[var(--muted)]">Thanks — we’ll respond with next steps shortly.</p>
+                  <Button onClick={() => setSubmitted(false)}>Send another request</Button>
+                </div>
+              ) : (
+                <form className="space-y-4" onSubmit={handleSubmit} noValidate>
+                  <div>
+                    <label className="block text-sm font-semibold text-[var(--text)]">Name</label>
+                    <Input
+                      type="text"
+                      value={form.name}
+                      onChange={(e) => handleChange('name', e.target.value)}
+                      className="mt-1"
+                      required
+                      autoComplete="name"
+                    />
+                    {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-[var(--text)]">Email</label>
+                    <Input
+                      type="email"
+                      value={form.email}
+                      onChange={(e) => handleChange('email', e.target.value)}
+                      className="mt-1"
+                      required
+                      autoComplete="email"
+                    />
+                    {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <label className="block text-sm font-semibold text-[var(--text)]">Project type</label>
+                      <select
+                        value={form.projectType}
+                        onChange={(e) => handleChange('projectType', e.target.value)}
+                        className="mt-1 w-full rounded-md border border-transparent bg-[rgba(255,255,255,0.02)] px-3 py-2 text-sm text-[var(--text)] focus:ring-2 focus:ring-[var(--accent-green)]"
+                        required
+                      >
+                        <option value="">Select</option>
+                        <option value="Photography">Photography</option>
+                        <option value="Videography">Videography</option>
+                        <option value="Music Video">Music Video</option>
+                        <option value="Design">Design</option>
+                      </select>
+                      {errors.projectType && <p className="text-red-400 text-xs mt-1">{errors.projectType}</p>}
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-[var(--text)]">Budget range</label>
+                      <select
+                        value={form.budget}
+                        onChange={(e) => handleChange('budget', e.target.value)}
+                        className="mt-1 w-full rounded-md border border-transparent bg-[rgba(255,255,255,0.02)] px-3 py-2 text-sm text-[var(--text)] focus:ring-2 focus:ring-[var(--accent-green)]"
+                        required
+                      >
+                        <option value="">Select</option>
+                        <option value="Under 3k">Under €3k</option>
+                        <option value="3k-7k">€3k – €7k</option>
+                        <option value="7k-15k">€7k – €15k</option>
+                        <option value="15k+">€15k+</option>
+                      </select>
+                      {errors.budget && <p className="text-red-400 text-xs mt-1">{errors.budget}</p>}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-[var(--text)]">Project notes</label>
+                    <textarea
+                      value={form.message}
+                      onChange={(e) => handleChange('message', e.target.value)}
+                      className="mt-1 w-full rounded-md border border-transparent bg-[rgba(255,255,255,0.02)] px-3 py-2 text-sm text-[var(--text)] placeholder:text-[var(--muted)] focus:ring-2 focus:ring-[var(--accent-green)] h-32"
+                      placeholder="Links, dates, location, deliverables…"
+                      required
+                    />
+                    {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
+                  </div>
+
+                  <Button type="submit">Send request</Button>
+                </form>
+              )}
+            </Card>
+          </div>
+        </div>
+      </Section>
+    </div>
   );
 };
 
