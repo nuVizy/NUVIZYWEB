@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react';
-import Section from '../components/ui/Section';
-import ProjectGrid from '../components/ui/ProjectGrid';
 import Button from '../components/ui/Button';
+import ProjectGrid from '../components/ui/ProjectGrid';
+import Section from '../components/ui/Section';
+import SectionHeading from '../components/ui/SectionHeading';
+import TextLink from '../components/ui/TextLink';
 import { allProjects, ProjectCategory } from '../content/portfolio';
 import { usePageMeta } from '../hooks/usePageMeta';
 
@@ -17,34 +19,47 @@ const Work = () => {
   }, [active]);
 
   return (
-    <Section className="pt-16">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <p className="text-xs uppercase tracking-wide text-slate">Portfolio</p>
-          <h1 className="text-3xl font-serif">Work</h1>
-          <p className="text-slate mt-2 max-w-2xl">
-            A curated mix of photography, film, music videos, and design built for artists, brands, and festivals.
-          </p>
+    <div>
+      <Section size="lg" padClassName="pt-28 pb-10 md:pt-32 md:pb-12" className="ctx-grid">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <SectionHeading
+            kicker="Portfolio"
+            title="Work"
+            description="A curated mix of photography, film, music videos, and design built for artists, brands, labels and festivals."
+          />
+          <div className="flex items-center gap-3">
+            <Button to="/contact">Request a quote</Button>
+            <TextLink to="/about">How we work</TextLink>
+          </div>
         </div>
-        <Button to="/contact">Request a quote</Button>
-      </div>
 
-      <div className="flex flex-wrap gap-2 mb-6 text-sm font-semibold">
-        {categories.map(category => (
-          <button
-            key={category}
-            className={`px-3 py-2 border rounded-subtle transition-colors duration-200 ${
-              active === category ? 'bg-charcoal text-white border-charcoal' : 'border-slate/40 text-charcoal'
-            }`}
-            onClick={() => setActive(category)}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
+        <div className="mt-8 flex flex-wrap gap-2">
+          {categories.map(category => {
+            const isActive = active === category;
+            return (
+              <button
+                key={category}
+                type="button"
+                className={
+                  'px-3 py-2 text-sm rounded-subtle border transition-colors duration-200 ' +
+                  (isActive
+                    ? 'bg-[var(--accent-green)] text-[var(--bg)] border-[rgba(140,255,46,0.18)]'
+                    : 'border-[var(--accent-dim)] text-[var(--muted)] hover:text-[var(--text)] hover:bg-[rgba(140,255,46,0.03)]')
+                }
+                onClick={() => setActive(category)}
+                aria-pressed={isActive}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
+      </Section>
 
-      <ProjectGrid projects={filtered} />
-    </Section>
+      <Section size="xl" tone="borderTop" padClassName="py-12 md:py-16">
+        <ProjectGrid projects={filtered} />
+      </Section>
+    </div>
   );
 };
 
