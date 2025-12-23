@@ -5,7 +5,6 @@ import ServicesStrip from '../components/ui/ServicesStrip';
 import ProcessTimeline from '../components/ui/ProcessTimeline';
 import TestimonialBlock from '../components/ui/TestimonialBlock';
 import ProjectGrid from '../components/ui/ProjectGrid';
-import SectionHeading from '../components/ui/SectionHeading';
 import { allProjects } from '../content/portfolio';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { useReveal } from '../hooks/useReveal';
@@ -29,86 +28,80 @@ const Home = () => {
         description="Creative studio for photography, film, music videos, and design."
         location="Brooklyn, NY"
       />
-
-      <Section className="pt-16 pb-12 bg-charcoal text-white">
-        <div ref={heroRef} className={`reveal ${heroVisible ? 'visible' : ''} space-y-4 max-w-5xl`}>
-          <p className="text-[12px] tracking-[0.24em] uppercase text-accent">Editorial Studio</p>
-          <h1>nuViz frames rhythm, story, and texture for artists who move with intention.</h1>
-          <h2 className="font-serif text-2xl text-gray-100">Photography, film, music videos, and design led by restraint.</h2>
-          <p className="text-gray-100">
-            We are a multidisciplinary crew capturing portraits, kinetic films, music videos, and design that holds its own in
-            print and motion. Calm sets, deliberate pacing, editorial taste.
+      <Section className="pt-16 pb-14 bg-charcoal text-white">
+        <div ref={heroRef} className={`reveal ${heroVisible ? 'visible' : ''}`}>
+          <p className="text-sm uppercase tracking-[0.2em] text-gray-300 mb-3">Creative Studio</p>
+          <h1 className="text-4xl sm:text-5xl font-serif leading-tight max-w-3xl">
+            nuViz frames rhythm, story, and texture for artists who move with intention.
+          </h1>
+          <p className="mt-4 max-w-2xl text-gray-200">
+            We are a multidisciplinary crew capturing editorial portraits, kinetic films, music videos, and brand design that
+            holds its own in print and motion.
           </p>
-          <div className="flex flex-wrap gap-3 pt-2">
+          <div className="mt-8 flex flex-wrap gap-3">
             <Button to="/contact">Book a shoot</Button>
-            <Button variant="ghost" to="/work" className="bg-white/10 text-white border-white/40 hover:bg-white/20">
+            <Button variant="ghost" to="/work">
               View work
             </Button>
-            <TextLink to="/music-videos" className="text-white border-white/50">
+            <TextLink to="/music-videos" className="text-white border-white/60">
               Explore music videos
             </TextLink>
           </div>
         </div>
       </Section>
 
-      <Section className="bg-white">
-        <div className="flex flex-col gap-8">
-          <SectionHeading
-            kicker="Selected work"
-            title="Recent releases"
-            description="A small sampling of sets across photography, film, music videos, and design. Each project balances craft, pace, and a clear visual thesis."
-          />
-          <div ref={workRef} className={`reveal ${workVisible ? 'visible' : ''}`}>
-            <ProjectGrid projects={allProjects.slice(0, 6)} />
+      <Section className="bg-white" id="featured">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-slate">Selected work</p>
+            <h2 className="text-2xl font-serif">Featured cuts</h2>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <TextLink to="/work">View the full portfolio</TextLink>
-            <span className="text-slate text-sm">or jump to</span>
-            <Link to="/videography" className="text-sm font-semibold underline decoration-2 decoration-accent">
-              Videography
-            </Link>
-          </div>
+          <TextLink to="/work">View all work</TextLink>
+        </div>
+        <div ref={workRef} className={`reveal ${workVisible ? 'visible' : ''}`}>
+          <ProjectGrid projects={allProjects.slice(0, 6)} />
         </div>
       </Section>
 
       <Section className="bg-slate/5">
-        <div className="flex flex-col gap-8">
-          <SectionHeading
-            kicker="Capabilities"
-            title="Services in motion"
-            description="Four pillars, tuned for artists, brands, and festivals. Built to scale from lean crews to full productions without losing intimacy."
-          />
-          <ServicesStrip
-            services={[
-              {
-                title: 'Photography',
-                detail: 'Editorial portraiture, campaigns, and on-location stories built around natural rhythm.'
-              },
-              {
-                title: 'Videography',
-                detail: 'Brand films, documentaries, and event coverage with intentional pacing and layered sound.'
-              },
-              {
-                title: 'Music Videos',
-                detail: 'Narrative and performance-led videos with tight shotlists, bold lighting, and dynamic edits.'
-              },
-              {
-                title: 'Design',
-                detail: 'Identity systems, posters, album covers, and social visuals anchored by strong grids.'
-              }
-            ]}
-          />
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-slate">Capabilities</p>
+            <h2 className="text-2xl font-serif">Services in motion</h2>
+          </div>
+          <TextLink to="/contact">Request a quote</TextLink>
         </div>
+        <ServicesStrip
+          services={[
+            {
+              title: 'Photography',
+              detail: 'Editorial portraiture, campaigns, and on-location stories built around natural rhythm.'
+            },
+            {
+              title: 'Videography',
+              detail: 'Brand films, documentaries, and event coverage with intentional pacing and rich soundbeds.'
+            },
+            {
+              title: 'Music Videos',
+              detail: 'Narrative and performance-led videos with tight shotlists, bold lighting, and dynamic edits.'
+            },
+            {
+              title: 'Design',
+              detail: 'Identity systems, posters, album covers, and social visuals anchored by strong grids.'
+            }
+          ]}
+        />
       </Section>
 
-      <Section className="bg-white">
-        <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
-          <div className="space-y-4">
-            <SectionHeading
-              kicker="Approach"
-              title="Process with discipline"
-              description="Every project moves through a tight cadence—listening, designing, capturing, refining. We keep crews lean, communicate often, and obsess over the last five percent."
-            />
+      <Section>
+        <div className="grid gap-10 lg:grid-cols-2">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-slate">Approach</p>
+            <h2 className="text-2xl font-serif mb-4">Process with discipline</h2>
+            <p className="text-slate mb-6">
+              Every project moves through a tight cadence—listening, designing, capturing, refining. We keep crews lean,
+              communicate often, and obsess over the last 5%. Here is how we move.
+            </p>
             <Button to="/contact">Start a project</Button>
           </div>
           <ProcessTimeline
@@ -135,59 +128,57 @@ const Home = () => {
       </Section>
 
       <Section className="bg-slate/5">
-        <div className="flex flex-col gap-8">
-          <SectionHeading
-            kicker="Voices"
-            title="Testimonials"
-            description="Partners who trust the pace and the framing."
-          />
-          <TestimonialBlock
-            testimonials={[
-              {
-                quote: 'nuViz listens first, then makes the frame feel inevitable. Every scene felt intentional.',
-                name: 'Mara Ellis',
-                role: 'Creative Lead, Halcyon'
-              },
-              {
-                quote: 'They direct with confidence but never lose the human energy. Our team trusted them instantly.',
-                name: 'Rico Alvarez',
-                role: 'Producer'
-              },
-              {
-                quote: 'Sharp eye for rhythm and pacing—our music video moves exactly how the track feels.',
-                name: 'LUNE',
-                role: 'Recording Artist'
-              }
-            ]}
-          />
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-slate">Voices</p>
+            <h2 className="text-2xl font-serif">Testimonials</h2>
+          </div>
+          <TextLink to="/work">View case studies</TextLink>
         </div>
+        <TestimonialBlock
+          testimonials={[
+            {
+              quote: 'nuViz listens first, then makes the frame feel inevitable. Every scene felt intentional.',
+              name: 'Mara Ellis',
+              role: 'Creative Lead, Halcyon'
+            },
+            {
+              quote: 'They direct with confidence but never lose the human energy. Our team trusted them instantly.',
+              name: 'Rico Alvarez',
+              role: 'Producer'
+            },
+            {
+              quote: 'Sharp eye for rhythm and pacing—our music video moves exactly how the track feels.',
+              name: 'LUNE',
+              role: 'Recording Artist'
+            }
+          ]}
+        />
       </Section>
 
-      <Section className="bg-white">
-        <div className="grid gap-8 md:grid-cols-2 md:items-center">
-          <div className="space-y-4">
-            <SectionHeading
-              kicker="Next"
-              title="Let’s build the next set"
-              description="Tell us about the story you want to tell—brand launch, album drop, or tour recap. We respond within one business day with a direction and timeline."
-            />
-            <div className="flex flex-wrap gap-3">
+      <Section>
+        <div className="grid gap-8 md:grid-cols-2 items-center">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-slate">Ready</p>
+            <h2 className="text-2xl font-serif mb-3">Let’s build the next set</h2>
+            <p className="text-slate mb-5">
+              Tell us about the story you want to tell—brand launch, album drop, or tour recap. We respond within one business
+              day with a direction and timeline.
+            </p>
+            <div className="flex gap-3">
               <Button to="/contact">Book a shoot</Button>
               <Button variant="ghost" to="/about">
                 Meet the studio
               </Button>
             </div>
           </div>
-          <div className="border border-slate/30 rounded-subtle p-6 bg-white shadow-soft space-y-4">
-            <h3 className="font-serif text-xl">Latest drops</h3>
+          <div className="border border-slate/30 rounded-subtle p-6 bg-white">
+            <h3 className="font-serif text-xl mb-2">Latest drops</h3>
             <ul className="space-y-3 text-sm text-slate">
               {allProjects.slice(0, 4).map(project => (
                 <li key={project.id} className="flex items-center justify-between">
-                  <div>
-                    <p className="font-semibold text-charcoal">{project.title}</p>
-                    <p className="text-xs text-slate">{project.category} · {project.year}</p>
-                  </div>
-                  <Link to={`/work/${project.slug}`} className="text-charcoal font-semibold underline decoration-2 decoration-accent">
+                  <span>{project.title}</span>
+                  <Link to={`/work/${project.slug}`} className="text-charcoal font-semibold underline">
                     View
                   </Link>
                 </li>

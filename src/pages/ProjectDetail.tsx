@@ -1,12 +1,11 @@
 import { useMemo, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Lightbox from '../components/ui/Lightbox';
 import Section from '../components/ui/Section';
 import TagList from '../components/ui/TagList';
 import { allProjects } from '../content/portfolio';
 import { usePageMeta } from '../hooks/usePageMeta';
 import Button from '../components/ui/Button';
-import SectionHeading from '../components/ui/SectionHeading';
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -22,10 +21,10 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <Section className="pt-16">
-        <h1 className="text-4xl font-serif">Project not found</h1>
+        <h1 className="text-3xl font-serif">Project not found</h1>
         <p className="text-slate mt-2">This project has moved. Explore our portfolio instead.</p>
-        <Button className="mt-4" to="/work">
-          Back to work
+        <Button className="mt-4">
+          <Link to="/work">Back to work</Link>
         </Button>
       </Section>
     );
@@ -37,10 +36,9 @@ const ProjectDetail = () => {
   return (
     <div>
       <Section className="pt-16">
-        <header className="space-y-4 max-w-4xl">
-          <p className="text-[12px] tracking-[0.24em] uppercase text-accent">{project.category}</p>
-          <h1>{project.title}</h1>
-          <h2 className="font-serif text-2xl">Project overview</h2>
+        <header className="max-w-4xl space-y-3">
+          <p className="text-xs uppercase tracking-wide text-slate">{project.category}</p>
+          <h1 className="text-4xl font-serif leading-tight">{project.title}</h1>
           <p className="text-slate max-w-3xl">{project.description}</p>
           <div className="flex flex-wrap gap-4 text-sm text-slate">
             <span>Year: {project.year}</span>
@@ -59,27 +57,27 @@ const ProjectDetail = () => {
         </header>
       </Section>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-3">
-        <div className="aspect-video rounded-subtle overflow-hidden shadow-soft">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="aspect-video rounded-subtle overflow-hidden shadow-soft mb-6">
           <img src={project.coverImage.src} alt={project.coverImage.alt} className="w-full h-full object-cover" />
         </div>
-        <p className="text-xs uppercase tracking-[0.2em] text-slate">Cover frame</p>
       </div>
 
       <Section>
-        <SectionHeading kicker="Gallery" title="Selected frames" description="Tap to open larger frames. Captions note intent." />
-        <div className="grid gap-4 sm:grid-cols-2 mt-6">
+        <div className="grid gap-4 sm:grid-cols-2">
           {project.galleryImages.map((image, index) => (
-            <figure key={image.src} className="relative group overflow-hidden rounded-subtle border border-slate/30 bg-white">
-              <button onClick={() => setLightboxIndex(index)} className="w-full h-full text-left">
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </button>
-              <figcaption className="px-3 py-2 text-xs text-slate border-t border-slate/20">{image.alt}</figcaption>
-            </figure>
+            <button
+              key={image.src}
+              onClick={() => setLightboxIndex(index)}
+              className="relative group overflow-hidden rounded-subtle border border-slate/30"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <span className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </button>
           ))}
         </div>
       </Section>
@@ -87,7 +85,8 @@ const ProjectDetail = () => {
       <Section className="bg-slate/5">
         <div className="flex items-center justify-between">
           <div>
-            <SectionHeading kicker="Sequence" title="Next project" description="Continue through the portfolio." />
+            <h2 className="text-2xl font-serif">Next project</h2>
+            <p className="text-slate">Up next in the sequence.</p>
           </div>
           <Button onClick={() => navigate(`/work/${nextProject.slug}`)}>Open {nextProject.title}</Button>
         </div>

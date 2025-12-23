@@ -7,14 +7,7 @@ interface Props {
 }
 
 const Card = ({ children, className }: Props) => (
-  <div
-    className={classNames(
-      'border border-slate/30 bg-white shadow-soft rounded-subtle p-6 transition-transform duration-200 hover:-translate-y-[4px]',
-      className
-    )}
-  >
-    {children}
-  </div>
+  <div className={classNames('border border-slate/30 bg-white shadow-soft rounded-subtle p-6', className)}>{children}</div>
 );
 
 export default Card;
