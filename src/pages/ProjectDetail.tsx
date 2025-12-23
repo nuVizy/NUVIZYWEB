@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Lightbox from '../components/ui/Lightbox';
 import Section from '../components/ui/Section';
 import TagList from '../components/ui/TagList';
@@ -20,12 +20,12 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <Section className="pt-16">
-        <h1 className="text-3xl font-serif">Project not found</h1>
-        <p className="text-slate mt-2">This project has moved. Explore our portfolio instead.</p>
-        <Button className="mt-4">
-          <Link to="/work">Back to work</Link>
-        </Button>
+      <Section size="lg" padClassName="pt-28 pb-12 md:pt-32 md:pb-16" className="ctx-grid">
+        <h1 className="font-mono text-3xl text-[var(--text)]">Project not found</h1>
+        <p className="text-[var(--muted)] mt-2">This project has moved. Explore our work index instead.</p>
+        <div className="mt-6">
+          <Button to="/work">Back to work</Button>
+        </div>
       </Section>
     );
   }
@@ -35,21 +35,26 @@ const ProjectDetail = () => {
 
   return (
     <div>
-      <Section className="pt-16">
-        <header className="max-w-4xl space-y-3">
-          <p className="text-xs uppercase tracking-wide text-slate">{project.category}</p>
-          <h1 className="text-4xl font-serif leading-tight">{project.title}</h1>
-          <p className="text-slate max-w-3xl">{project.description}</p>
-          <div className="flex flex-wrap gap-4 text-sm text-slate">
-            <span>Year: {project.year}</span>
-            <span>Role: {project.role}</span>
-            {project.location && <span>Location: {project.location}</span>}
+      <Section size="lg" padClassName="pt-28 pb-10 md:pt-32 md:pb-12" className="ctx-grid">
+        <header className="max-w-4xl space-y-4">
+          <p className="font-mono text-xs uppercase tracking-widest text-[var(--muted)]">{project.category}</p>
+          <h1 className="font-mono text-4xl md:text-5xl text-[var(--text)] leading-tight">{project.title}</h1>
+          <p className="text-[var(--muted)] max-w-3xl">{project.description}</p>
+
+          <div className="flex flex-wrap gap-3 text-sm text-[var(--muted)]">
+            <span className="border border-[var(--accent-dim)] rounded-full px-3 py-1">Year: {project.year}</span>
+            <span className="border border-[var(--accent-dim)] rounded-full px-3 py-1">Role: {project.role}</span>
+            {project.location && (
+              <span className="border border-[var(--accent-dim)] rounded-full px-3 py-1">Location: {project.location}</span>
+            )}
           </div>
+
           <TagList tags={project.tags} />
-          <div className="text-sm text-slate">
-            <p className="font-semibold text-charcoal mb-1">Credits</p>
-            <ul className="list-disc list-inside space-y-1">
-              {project.credits.map(credit => (
+
+          <div className="panel rounded-2xl p-6">
+            <p className="font-mono text-sm text-[var(--text)] mb-3">Credits</p>
+            <ul className="list-disc list-inside space-y-1 text-sm text-[var(--muted)]">
+              {project.credits.map((credit) => (
                 <li key={credit}>{credit}</li>
               ))}
             </ul>
@@ -58,18 +63,18 @@ const ProjectDetail = () => {
       </Section>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="aspect-video rounded-subtle overflow-hidden shadow-soft mb-6">
+        <div className="aspect-video rounded-2xl overflow-hidden border border-[var(--accent-dim)] mb-6">
           <img src={project.coverImage.src} alt={project.coverImage.alt} className="w-full h-full object-cover" />
         </div>
       </div>
 
-      <Section>
+      <Section size="lg" tone="borderTop" padClassName="py-12 md:py-16">
         <div className="grid gap-4 sm:grid-cols-2">
           {project.galleryImages.map((image, index) => (
             <button
               key={image.src}
               onClick={() => setLightboxIndex(index)}
-              className="relative group overflow-hidden rounded-subtle border border-slate/30"
+              className="relative group overflow-hidden rounded-2xl border border-[var(--accent-dim)]"
             >
               <img
                 src={image.src}
@@ -82,11 +87,11 @@ const ProjectDetail = () => {
         </div>
       </Section>
 
-      <Section className="bg-slate/5">
-        <div className="flex items-center justify-between">
+      <Section size="lg" tone="borderTop" padClassName="py-12 md:py-16">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <h2 className="text-2xl font-serif">Next project</h2>
-            <p className="text-slate">Up next in the sequence.</p>
+            <h2 className="font-mono text-2xl text-[var(--text)]">Next project</h2>
+            <p className="text-[var(--muted)] mt-2">Up next in the sequence.</p>
           </div>
           <Button onClick={() => navigate(`/work/${nextProject.slug}`)}>Open {nextProject.title}</Button>
         </div>
