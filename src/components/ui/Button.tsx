@@ -14,8 +14,8 @@ const Button = ({ variant = 'solid', className, children, to, href, ...rest }: P
   const base = 'inline-flex items-center justify-center px-4 py-2 text-sm font-semibold transition-colors duration-200 rounded-subtle';
   const styles =
     variant === 'solid'
-      ? 'bg-charcoal text-white hover:bg-slate'
-      : 'text-charcoal border border-charcoal hover:bg-charcoal hover:text-white';
+      ? 'bg-neon text-black hover:brightness-90 shadow-[0_6px_18px_rgba(0,255,65,0.08)]'
+      : 'text-neon border border-[rgba(0,255,65,0.12)] hover:bg-[rgba(0,255,65,0.04)]';
 
   if (to) {
     return (

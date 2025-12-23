@@ -15,13 +15,13 @@ const SectionHeading = ({ kicker, title, description, align = 'start', eyebrowCo
       <p
         className={classNames(
           'text-[12px] tracking-[0.24em] uppercase font-semibold',
-          eyebrowColor === 'accent' ? 'text-accent' : 'text-slate'
+          eyebrowColor === 'accent' ? 'text-neon' : 'text-neon-dim'
         )}
       >
         {kicker}
       </p>
-      <h2 className="font-serif">{title}</h2>
-      {description && <div className="text-slate text-base leading-relaxed max-w-[65ch]">{description}</div>}
+      <h2 className="font-display neon text-3xl">{title}</h2>
+      {description && <div className="text-[var(--muted)] text-base leading-relaxed max-w-[65ch]">{description}</div>}
     </div>
   );
 };

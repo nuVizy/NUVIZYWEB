@@ -5,7 +5,7 @@ const TextLink = ({ className, children, ...rest }: LinkProps) => (
   <Link
     {...rest}
     className={classNames(
-      'inline-flex items-center gap-2 text-sm font-semibold text-charcoal border-b border-charcoal/50 hover:border-charcoal',
+      'inline-flex items-center gap-2 text-sm font-semibold text-neon-dim border-b border-[rgba(0,255,65,0.06)] hover:text-neon hover:border-[rgba(0,255,65,0.12)]',
       className
     )}
   >
