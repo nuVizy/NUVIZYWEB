@@ -1,80 +1,158 @@
-import Section from "../components/ui/Section";
+import AbstractArt from "../components/ui/AbstractArt";
 import Button from "../components/ui/Button";
+import ProcessTimeline from "../components/ui/ProcessTimeline";
+import Section from "../components/ui/Section";
+import SectionHeading from "../components/ui/SectionHeading";
 import TextLink from "../components/ui/TextLink";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 const About = () => {
   usePageMeta({
-    title: "About nuViz | UK-built, Cyprus-based Visual Systems Studio",
+    title: "About | nuViz Studio",
     description:
-      "nuViz is a high-level alternative visual systems studio — built in the UK, now based in Paphos, Cyprus. Photography, film, music videos and design for artists, labels, theatres and brands.",
+      "Studio story, values, and working method for nuViz — a visual systems studio for photography, film, music videos and design.",
     canonicalPath: "/about",
   });
 
   return (
     <div>
-      {/* Intro */}
-      <Section className="pt-16">
-        <p className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] code-prefix code-prefix-sm" data-prefix="//">
-          About
-        </p>
-
-        <h1 className="font-mono text-4xl md:text-5xl text-[var(--text)] matrix-glow">
-          We build visual systems.
-        </h1>
-
-        <p className="text-[var(--muted)] mt-4 max-w-3xl">
-          nuViz is a high-level alternative studio built in the UK and now based in Paphos, Cyprus. We work across photography, film,
-          music videos and design — not as separate services, but as one continuous language.
-        </p>
-
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Button to="/contact">Work with nuViz</Button>
-          <Button variant="ghost" to="/work">
-            View work
-          </Button>
+      {/* Hero */}
+      <Section
+        bleed
+        padClassName="pt-28 pb-12 md:pt-36 md:pb-16"
+        className="relative overflow-hidden ctx-grid"
+      >
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 hero-abstract" />
+          <div className="absolute -bottom-28 -left-32 opacity-35">
+            <AbstractArt className="h-[560px] w-[760px]" variant="soft" />
+          </div>
+          <div className="absolute inset-0 opacity-15 bg-gradient-to-b from-black/15 to-transparent" />
         </div>
 
-        <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 text-sm text-[var(--muted)]">
-          <div className="matrix-panel rounded-2xl px-4 py-3">UK-built</div>
-          <div className="matrix-panel rounded-2xl px-4 py-3">Paphos-based</div>
-          <div className="matrix-panel rounded-2xl px-4 py-3">Small crews</div>
-          <div className="matrix-panel rounded-2xl px-4 py-3">In-house post</div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 relative">
+          <div className="grid grid-cols-12 gap-10 items-end">
+            <div className="col-span-12 lg:col-span-8">
+              <p
+                className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] code-prefix code-prefix-sm"
+                data-prefix="//"
+              >
+                About
+              </p>
+              <h1 className="font-mono text-4xl sm:text-5xl lg:text-6xl text-[var(--text)] leading-tight">
+                We build visual systems — not one-offs.
+              </h1>
+              <p className="mt-4 text-[var(--muted)] max-w-2xl">
+                nuViz started in the UK and now operates from Paphos, Cyprus. We work with artists, brands, labels and stages
+                to produce photography, film, music videos and design that share one consistent language.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Button to="/contact">Work with us</Button>
+                <Button variant="ghost" to="/work">
+                  View work
+                </Button>
+                <TextLink to="/photography">Explore services</TextLink>
+              </div>
+            </div>
+
+            <aside className="col-span-12 lg:col-span-4">
+              <div className="panel rounded-2xl p-6">
+                <p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">Studio</p>
+                <div className="mt-3 space-y-3 text-sm">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="text-[var(--muted)]">Base</span>
+                    <span className="text-[var(--text)]">Paphos, Cyprus</span>
+                  </div>
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="text-[var(--muted)]">Roots</span>
+                    <span className="text-[var(--text)]">United Kingdom</span>
+                  </div>
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="text-[var(--muted)]">Response</span>
+                    <span className="text-[var(--text)]">&lt; 1 business day</span>
+                  </div>
+                </div>
+                <div className="mt-5 border-t border-[var(--accent-dim)] pt-4 text-sm text-[var(--muted)]">
+                  Send a reference + intention and we’ll reply with direction, structure, and a realistic timeline.
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
       </Section>
 
       {/* Manifesto */}
-      <Section tone="borderTop">
+      <Section size="lg" tone="borderTop">
+        <SectionHeading
+          kicker="Manifesto"
+          title="Make it inevitable"
+          description="We care about clarity, pacing, and repeatability — so the work survives outside the first post."
+        />
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {[
+            {
+              title: "Restraint",
+              text: "Remove noise until the frame reads. Fewer choices, stronger outcomes.",
+            },
+            {
+              title: "Direction",
+              text: "Small crews, decisive calls, calm sets. We keep everyone aligned.",
+            },
+            {
+              title: "Systems",
+              text: "Deliverables that reuse: crops, cuts, templates, exports — all in one language.",
+            },
+          ].map((item) => (
+            <div key={item.title} className="panel rounded-2xl p-6">
+              <h3 className="font-mono text-xl text-[var(--text)]">{item.title}</h3>
+              <p className="mt-2 text-sm text-[var(--muted)]">{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* What we do */}
+      <Section size="lg" tone="borderTop">
         <div className="grid gap-10 lg:grid-cols-12 items-start">
           <div className="lg:col-span-5">
-            <p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">Manifesto</p>
-            <h2 className="font-mono text-2xl text-[var(--text)] mt-2">
-              Restraint, rhythm, and signal.
-            </h2>
-            <p className="text-[var(--muted)] mt-4">
-              We reduce until the image becomes inevitable — then we build the system around it. No filler. No generic templates.
-            </p>
+            <SectionHeading
+              kicker="What we do"
+              title="Four disciplines, one language"
+              description={
+                <>
+                  <p>
+                    The goal is consistency: your photography should feel like your film; your design should reinforce the same
+                    tone.
+                  </p>
+                  <p className="mt-3">That’s what we mean by a visual system.</p>
+                </>
+              }
+            />
           </div>
-
           <div className="lg:col-span-7">
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-3">
               {[
                 {
-                  title: "Values",
-                  text: "Precision, patience, and calm direction. Space for experimentation — with a clear finish line.",
+                  k: "Photography",
+                  v: "Portraiture, campaigns, editorial — controlled light and negative space.",
                 },
                 {
-                  title: "Approach",
-                  text: "Define the idea → structure the system → execute cleanly. Less noise, more signal.",
+                  k: "Film",
+                  v: "Brand films and documentary sequences with deliberate pacing.",
                 },
                 {
-                  title: "Collaboration",
-                  text: "We work well with artists, labels, theatres, agencies, and in-house teams. Credits stay clear.",
+                  k: "Music Videos",
+                  v: "Performance-led direction and cinematic cut built around rhythm.",
                 },
-              ].map((item) => (
-                <div key={item.title} className="matrix-panel rounded-2xl p-5">
-                  <h3 className="font-mono text-base text-[var(--text)] mb-2">{item.title}</h3>
-                  <p className="text-sm text-[var(--muted)]">{item.text}</p>
+                {
+                  k: "Design",
+                  v: "Identity systems, artwork, layout, and production-ready templates.",
+                },
+              ].map((row) => (
+                <div key={row.k} className="flex gap-6 items-start border border-[var(--accent-dim)] rounded-2xl p-5">
+                  <div className="w-28 flex-shrink-0 font-mono text-[var(--accent-green)]">{row.k}</div>
+                  <div className="text-sm text-[var(--muted)]">{row.v}</div>
                 </div>
               ))}
             </div>
@@ -82,140 +160,51 @@ const About = () => {
         </div>
       </Section>
 
-      {/* Credibility / Clients */}
-      <Section>
-        <div className="grid gap-10 lg:grid-cols-12 items-start">
-          <div className="lg:col-span-5">
-            <p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">Selected collaborators</p>
-            <h2 className="font-mono text-2xl text-[var(--text)] mt-2">
-              Work that lives in culture-facing rooms.
-            </h2>
-            <p className="text-[var(--muted)] mt-4">
-              Past collaborations include MIF Manchester, MC DRS, Children of Zeus, Manchester Royal Theatre — and more across music,
-              performance and independent brand worlds.
-            </p>
-            <p className="text-xs text-[var(--muted)] mt-3">
-              For detailed credits and roles,{" "}
-              <TextLink to="/contact">request a project list</TextLink>.
-            </p>
-          </div>
-
-          <div className="lg:col-span-7">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 text-sm text-[var(--muted)]">
-              {[
-                "MIF Manchester",
-                "MC DRS",
-                "Children of Zeus",
-                "Manchester Royal Theatre",
-                "Artists & Labels",
-                "Independent Studios",
-              ].map((name) => (
-                <div key={name} className="border border-[var(--accent-dim)] rounded-2xl px-4 py-3">
-                  {name}
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 matrix-panel rounded-2xl p-6">
-              <p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">Positioning</p>
-              <p className="text-[var(--muted)] mt-3">
-                nuViz is not a “content” studio. We’re built for high-level projects that need a distinct visual language — alternative,
-                intentional, and engineered to hold up over time.
-              </p>
-            </div>
-          </div>
+      {/* Working method */}
+      <Section size="lg" tone="borderTop">
+        <SectionHeading
+          kicker="Working method"
+          title="Structure creates freedom"
+          description="Enough planning to keep shoots calm — enough flexibility to catch the unexpected."
+        />
+        <div className="mt-8">
+          <ProcessTimeline
+            steps={[
+              {
+                title: "References + intention",
+                description: "You send links, constraints, and the outcome you need. We pull a clear direction from it.",
+              },
+              {
+                title: "System outline",
+                description: "Tone, palette, pacing, and deliverables — documented before production starts.",
+              },
+              {
+                title: "Production",
+                description: "Small crew, decisive direction, clean coverage — with time protected for the hero moments.",
+              },
+              {
+                title: "Post + packaging",
+                description: "Cut, grade, layouts and exports delivered with naming, crops and versions your team can reuse.",
+              },
+            ]}
+          />
         </div>
       </Section>
 
-      {/* Story / Locations */}
-      <Section tone="borderTop">
-        <div className="grid gap-10 lg:grid-cols-12 items-start">
-          <div className="lg:col-span-7">
-            <h2 className="font-mono text-2xl text-[var(--text)]">Studio story</h2>
-            <p className="text-[var(--muted)] mt-4">
-              nuViz was built in the UK — shaped by late nights, small crews, and an obsession with rhythm: frames, typography, cuts,
-              and light.
+      {/* CTA */}
+      <Section size="lg" tone="borderTop" padClassName="py-14 md:py-16">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div>
+            <h2 className="font-mono text-xl text-[var(--text)]">Want a system built around your next release?</h2>
+            <p className="text-[var(--muted)] mt-2 max-w-2xl">
+              Send a brief, a reference, or even a voice note. We’ll reply within one business day.
             </p>
-            <p className="text-[var(--muted)] mt-3">
-              Now based in Paphos, Cyprus, we work locally and travel for the right project. Pre-production stays structured, shoot days
-              stay calm, and post stays close.
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button to="/contact">Book a call</Button>
-              <Button variant="ghost" to="/work">
-                Browse projects
-              </Button>
-            </div>
           </div>
-
-          <div className="lg:col-span-5">
-            <div className="matrix-panel rounded-2xl p-6">
-              <h3 className="font-mono text-lg text-[var(--text)]">Base & coverage</h3>
-              <p className="text-sm text-[var(--muted)] mt-3">
-                <span className="text-[var(--text)]">Based:</span> Paphos, Cyprus
-              </p>
-              <p className="text-sm text-[var(--muted)] mt-2">
-                <span className="text-[var(--text)]">Origin:</span> United Kingdom
-              </p>
-              <p className="text-sm text-[var(--muted)] mt-2">
-                <span className="text-[var(--text)]">Area served:</span> Cyprus · UK · Europe
-              </p>
-
-              <div className="mt-5 border-t border-[var(--accent-dim)] pt-5">
-                <p className="text-sm text-[var(--muted)]">
-                  For quick-turn edits, remote direction, or on-location production,{" "}
-                  <TextLink to="/contact">send a short brief</TextLink>.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-4 border border-[var(--accent-dim)] rounded-2xl p-6">
-              <p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">Typical projects</p>
-              <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
-                <li>• Editorial portraits & press systems</li>
-                <li>• Campaign stills & brand photography</li>
-                <li>• Music video direction & post</li>
-                <li>• Identity systems & artwork</li>
-                <li>• Short films & performance visuals</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Light FAQ (SEO) */}
-      <Section>
-        <p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">FAQ</p>
-        <h2 className="font-mono text-2xl text-[var(--text)] mt-2">How we work</h2>
-
-        <div className="mt-6 grid md:grid-cols-2 gap-6">
-          <div className="matrix-panel rounded-2xl p-6">
-            <div className="font-mono text-[var(--text)]">Do you work in the UK and Cyprus?</div>
-            <div className="text-[var(--muted)] mt-2">
-              Yes. We’re based in Paphos, Cyprus with UK roots and regular UK availability — plus travel across Europe when it fits.
-            </div>
-          </div>
-
-          <div className="matrix-panel rounded-2xl p-6">
-            <div className="font-mono text-[var(--text)]">What makes nuViz “alternative”?</div>
-            <div className="text-[var(--muted)] mt-2">
-              We don’t chase trends. We build a visual language that holds — restrained, deliberate, and recognisable.
-            </div>
-          </div>
-
-          <div className="matrix-panel rounded-2xl p-6">
-            <div className="font-mono text-[var(--text)]">Do you keep post in-house?</div>
-            <div className="text-[var(--muted)] mt-2">
-              Yes. Editing and finishing stay close to the original intent. We collaborate with specialists when the system needs it.
-            </div>
-          </div>
-
-          <div className="matrix-panel rounded-2xl p-6">
-            <div className="font-mono text-[var(--text)]">How do we start?</div>
-            <div className="text-[var(--muted)] mt-2">
-              Send a brief, a reference, and your timeline. We’ll reply with direction, scope, and next steps.
-            </div>
+          <div className="flex items-center gap-3">
+            <Button to="/contact">Start a project</Button>
+            <Button variant="ghost" to="/work">
+              View work
+            </Button>
           </div>
         </div>
       </Section>
