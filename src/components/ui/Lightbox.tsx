@@ -46,7 +46,7 @@ const Lightbox = ({ images, activeIndex, onClose }: Props) => {
         <button
           ref={closeButtonRef}
           onClick={onClose}
-          className="absolute top-3 right-3 px-3 py-2 bg-white text-charcoal text-sm font-semibold"
+          className="absolute top-3 right-3 px-3 py-2 bg-[var(--panel)] text-[var(--text)] text-sm font-semibold border border-[var(--accent-dim)]"
         >
           Close
         </button>

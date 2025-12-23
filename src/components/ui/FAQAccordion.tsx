@@ -13,7 +13,7 @@ interface Props {
 const FAQAccordion = ({ items }: Props) => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   return (
-    <div className="divide-y divide-slate/30 border border-slate/30 rounded-subtle">
+    <div className="divide-y divide-[var(--accent-dim)] border border-[var(--accent-dim)] rounded-subtle">
       {items.map((item, index) => {
         const open = openIndex === index;
         return (
@@ -23,10 +23,10 @@ const FAQAccordion = ({ items }: Props) => {
               onClick={() => setOpenIndex(open ? null : index)}
               aria-expanded={open}
             >
-              <span className="font-semibold">{item.question}</span>
-              <span className="text-slate">{open ? '–' : '+'}</span>
+              <span className="font-mono text-[var(--text)]">{item.question}</span>
+              <span className="text-[var(--muted)]">{open ? '–' : '+'}</span>
             </button>
-            <div className={classNames('px-4 pb-4 text-sm text-slate transition-all duration-300', open ? 'block' : 'hidden')}>
+            <div className={classNames('px-4 pb-4 text-sm text-[var(--muted)] transition-all duration-300', open ? 'block' : 'hidden')}>
               {item.answer}
             </div>
           </div>

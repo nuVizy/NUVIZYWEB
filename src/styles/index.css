@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Grotesk:wght@300;400;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg: #050806; /* deep black-green */
-  --panel: #07100b;
-  --neon: #00FF41;
-  --neon-dim: #00c43a;
-  --muted: #9aa6a0;
+  --bg: #0b0b0b;
+  --panel: #0f1112;
+  --text: #e6efe6;
+  --muted: #879389;
+  --accent-green: #8cff2e;
+  --accent-dim: rgba(140,255,46,0.12);
 }
 
 html, body, #root {
@@ -17,57 +18,125 @@ html, body, #root {
 }
 
 body {
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.6), transparent 40%), var(--bg);
-  color: var(--neon-dim);
-  font-family: theme('fontFamily.sans');
+  background: radial-gradient(circle at 20% 10%, rgba(255,255,255,0.02), transparent 8%), var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4 {
-  font-family: Orbitron, system-ui, sans-serif;
-  color: var(--neon);
+  font-family: 'Share Tech Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  color: var(--text);
   letter-spacing: -0.01em;
 }
 
-a { color: var(--neon-dim); }
-
-.neon {
-  color: var(--neon);
-  text-shadow: 0 0 8px rgba(0,255,65,0.08), 0 0 18px rgba(0,255,65,0.06);
-}
+a { color: var(--accent-green); }
 
 .panel {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(0,255,65,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
+  border: 1px solid var(--accent-dim);
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-/* subtle vertical scanlines for matrix vibe */
+/* subtle neutral texture */
 .matrix-bg::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background-image: linear-gradient(rgba(0,255,65,0.02) 1px, transparent 1px);
-  background-size: 100% 24px;
-  mix-blend-mode: screen;
-  opacity: 0.35;
+  background-image: linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px);
+  background-size: 100% 30px;
+  mix-blend-mode: overlay;
+  opacity: 0.15;
+}
+
+/* ctx-style subtle grid and blocks */
+.ctx-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to right, rgba(140,255,46,0.03) 1px, transparent 1px), linear-gradient(rgba(140,255,46,0.03) 1px, transparent 1px);
+  background-size: 120px 100%, 100% 120px;
+  opacity: 0.06;
 }
 
 .reveal {
   opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 600ms ease, transform 600ms ease;
+  transform: translateY(6px);
+  transition: opacity 500ms ease, transform 500ms ease;
 }
 
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 .kbd {
-  font-family: 'Share Tech Mono', monospace;
-  color: var(--neon);
-  background: rgba(0,0,0,0.35);
-  border: 1px solid rgba(0,255,65,0.06);
+  font-family: 'Share Tech Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  color: var(--accent-green);
+  background: rgba(140,255,46,0.02);
+  border: 1px solid rgba(140,255,46,0.04);
   padding: 2px 6px;
   border-radius: 4px;
+}
+
+/* Code-like prefix utilities */
+.code-prefix {
+  position: relative;
+  padding-left: 2.25rem;
+  display: inline-block;
+}
+.code-prefix::before {
+  content: attr(data-prefix);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: 'Share Tech Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  color: var(--accent-green);
+  opacity: 0.95;
+  font-size: 0.875rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+.code-prefix.block {
+  display: block;
+}
+.code-prefix.block::before {
+  top: 0.25rem;
+}
+
+/* small variant for compact labels */
+.code-prefix-sm {
+  padding-left: 1.5rem;
+}
+.code-prefix-sm::before {
+  font-size: 0.75rem;
+  top: 0.125rem;
+}
+
+/* Abstract background variants */
+.abstract-1 {
+  background-image: radial-gradient(800px circle at 10% 20%, rgba(140,255,46,0.06), transparent 8%), radial-gradient(600px circle at 90% 80%, rgba(0,140,255,0.04), transparent 10%), linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
+  background-blend-mode: screen, screen, normal;
+}
+
+.abstract-2 {
+  background-image: radial-gradient(500px circle at 30% 30%, rgba(255,120,180,0.04), transparent 8%), radial-gradient(400px circle at 70% 70%, rgba(120,180,255,0.03), transparent 10%);
+  background-blend-mode: overlay;
+}
+
+.hero-abstract {
+  background-image: radial-gradient(700px circle at 15% 25%, rgba(140,255,46,0.08), transparent 12%), radial-gradient(500px circle at 85% 75%, rgba(0,140,255,0.05), transparent 12%);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+
+/* page-level subtle abstract background */
+.page-abstract::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(900px circle at 20% 10%, rgba(140,255,46,0.02), transparent 8%), radial-gradient(700px circle at 80% 90%, rgba(0,140,255,0.015), transparent 10%);
+  opacity: 0.9;
+  mix-blend-mode: overlay;
 }

@@ -3,11 +3,11 @@ import { classNames } from '../../lib/classNames';
 
 const TextLink = ({ className, children, ...rest }: LinkProps) => (
   <Link
-    {...rest}
-    className={classNames(
-      'inline-flex items-center gap-2 text-sm font-semibold text-neon-dim border-b border-[rgba(0,255,65,0.06)] hover:text-neon hover:border-[rgba(0,255,65,0.12)]',
-      className
-    )}
+      {...rest}
+      className={classNames(
+        'inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted)] border-b border-[var(--accent-dim)] hover:text-[var(--accent-green)] hover:border-[rgba(140,255,46,0.24)]',
+        className
+      )}
   >
     {children}
   </Link>

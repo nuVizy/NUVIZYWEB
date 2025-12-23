@@ -21,24 +21,24 @@ const Header = () => {
   const closeMenu = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-[var(--panel)]/80 backdrop-blur border-b border-[rgba(0,255,65,0.06)]">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-3 font-display text-lg neon" onClick={closeMenu}>
-            <span className="w-9 h-9 bg-[var(--neon)]/8 text-[var(--neon)] border border-[rgba(0,255,65,0.08)] flex items-center justify-center rounded">nV</span>
-            <span className="tracking-tight">nuViz Studio</span>
+    <header className="absolute inset-x-0 top-0 z-50">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
+        <div className="flex items-center justify-between h-20 py-4">
+          <Link to="/" className="flex items-center gap-3 font-display text-sm" onClick={closeMenu}>
+            <span className="text-[var(--accent-green)] font-mono text-xs tracking-wider">nuViz</span>
+            <span className="tracking-tight text-[var(--muted)] text-xs">/</span>
           </Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-medium bg-transparent">
             {navItems.map(item => (
               <NavLink
                 key={item.to}
                 to={item.to}
                 className={({ isActive }) =>
                   classNames(
-                    'transition-colors duration-200 hover:text-neon',
+                    'transition-colors duration-200 hover:text-[var(--accent-green)]',
                     isActive || location.pathname.startsWith(item.to)
-                      ? 'text-neon border-b border-[rgba(0,255,65,0.08)]'
-                      : 'text-neon-dim'
+                      ? 'text-[var(--accent-green)] border-b border-[var(--accent-dim)]'
+                      : 'text-[var(--muted)]'
                   )
                 }
               >
@@ -46,20 +46,15 @@ const Header = () => {
               </NavLink>
             ))}
           </nav>
-          <button
-            type="button"
-            className="md:hidden p-2 text-neon-dim"
-            aria-label="Toggle menu"
-            onClick={handleToggle}
-          >
-            <span className="block w-6 h-0.5 bg-neon-dim mb-1" />
-            <span className="block w-6 h-0.5 bg-neon-dim mb-1" />
-            <span className="block w-6 h-0.5 bg-neon-dim" />
+          <button type="button" className="md:hidden p-2 text-[var(--muted)]" aria-label="Toggle menu" onClick={handleToggle}>
+            <span className="block w-6 h-0.5 bg-[var(--muted)] mb-1" />
+            <span className="block w-6 h-0.5 bg-[var(--muted)] mb-1" />
+            <span className="block w-6 h-0.5 bg-[var(--muted)]" />
           </button>
         </div>
         {open && (
-          <div className="md:hidden pb-4 border-t border-[rgba(0,255,65,0.04)]">
-            <nav className="flex flex-col gap-3 pt-3 text-sm font-medium">
+          <div className="md:hidden pb-4 border-t border-[var(--accent-dim)] bg-[var(--panel)]/95 backdrop-blur-sm">
+            <nav className="flex flex-col gap-3 pt-3 text-sm font-medium px-3">
               {navItems.map(item => (
                 <NavLink
                   key={item.to}
@@ -68,7 +63,7 @@ const Header = () => {
                   className={({ isActive }) =>
                     classNames(
                       'transition-colors duration-200',
-                      isActive || location.pathname.startsWith(item.to) ? 'text-neon' : 'text-neon-dim'
+                      isActive || location.pathname.startsWith(item.to) ? 'text-[var(--accent-green)]' : 'text-[var(--text)]'
                     )
                   }
                 >

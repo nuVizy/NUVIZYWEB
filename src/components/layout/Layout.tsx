@@ -4,12 +4,10 @@ import Footer from './Footer';
 
 const Layout = () => {
   return (
-    <div className="min-h-screen matrix-bg bg-[var(--bg)] text-neon-dim flex flex-col">
+    <div className="min-h-screen matrix-bg ctx-grid bg-[var(--bg)] text-[var(--muted)] flex flex-col relative">
       <Header />
-      <main className="flex-1">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-10">
-          <Outlet />
-        </div>
+      <main className="flex-1 pt-24 page-abstract relative">
+        <Outlet />
       </main>
       <Footer />
       <ScrollRestoration />

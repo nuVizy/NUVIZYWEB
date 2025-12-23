@@ -10,10 +10,10 @@ interface Props {
 const ServicesStrip = ({ services }: Props) => (
   <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
     {services.map((service, index) => (
-      <div key={service.title} className="border border-slate/30 rounded-subtle p-4 bg-white">
-        <div className="text-xs uppercase tracking-wide text-slate mb-2">Service {index + 1}</div>
-        <h3 className="font-serif text-lg mb-2">{service.title}</h3>
-        <p className="text-sm text-slate">{service.detail}</p>
+      <div key={service.title} className="panel rounded-subtle p-4">
+        <div className="text-xs uppercase tracking-wide text-[var(--muted)] mb-2">Service {index + 1}</div>
+        <h3 className="font-mono text-lg mb-2 text-[var(--text)]">{service.title}</h3>
+        <p className="text-sm text-[var(--muted)]">{service.detail}</p>
       </div>
     ))}
   </div>

@@ -10,15 +10,13 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import { useReveal } from '../hooks/useReveal';
 import JsonLdOrganization from '../components/JsonLdOrganization';
 import TextLink from '../components/ui/TextLink';
+import Hero from '../components/Hero';
 
 const Home = () => {
   usePageMeta({
     title: 'nuViz Studio | Photography, Film, Music Videos, Design',
     description: 'nuViz is a creative studio crafting premium photography, film, music videos, and design with rhythm.'
   });
-
-  const { ref: heroRef, visible: heroVisible } = useReveal();
-  const { ref: workRef, visible: workVisible } = useReveal();
 
   return (
     <div>
@@ -28,165 +26,128 @@ const Home = () => {
         description="Creative studio for photography, film, music videos, and design."
         location="Brooklyn, NY"
       />
-      <Section className="pt-16 pb-14 bg-charcoal text-white">
-        <div ref={heroRef} className={`reveal ${heroVisible ? 'visible' : ''}`}>
-          <p className="text-sm uppercase tracking-[0.2em] text-gray-300 mb-3">Creative Studio</p>
-          <h1 className="text-4xl sm:text-5xl font-serif leading-tight max-w-3xl">
-            nuViz frames rhythm, story, and texture for artists who move with intention.
-          </h1>
-          <p className="mt-4 max-w-2xl text-gray-200">
-            We are a multidisciplinary crew capturing editorial portraits, kinetic films, music videos, and brand design that
-            holds its own in print and motion.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button to="/contact">Book a shoot</Button>
-            <Button variant="ghost" to="/work">
-              View work
-            </Button>
-            <TextLink to="/music-videos" className="text-white border-white/60">
-              Explore music videos
-            </TextLink>
-          </div>
-        </div>
-      </Section>
 
-      <Section className="bg-white" id="featured">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <p className="text-xs uppercase tracking-wide text-slate">Selected work</p>
-            <h2 className="text-2xl font-serif">Featured cuts</h2>
-          </div>
-          <TextLink to="/work">View all work</TextLink>
-        </div>
-        <div ref={workRef} className={`reveal ${workVisible ? 'visible' : ''}`}>
-          <ProjectGrid projects={allProjects.slice(0, 6)} />
-        </div>
-      </Section>
+      {/* Hero */}
+      <section className="relative min-h-screen flex items-center bg-[var(--bg)] ctx-grid">
+        <div className="absolute inset-0 opacity-10 bg-gradient-to-b from-black/10 to-transparent pointer-events-none" />
+        <div className="mx-auto max-w-6xl px-6 lg:px-8 py-28 lg:py-36">
+          <header className="max-w-4xl">
+            <p className="font-mono text-xs uppercase tracking-widest text-[var(--muted)] code-prefix code-prefix-sm" data-prefix="//">Creative Studio</p>
+            <h1 className="font-mono text-[5.25rem] leading-tight text-[var(--accent-green)] lg:text-[6.5rem]">nuViz</h1>
+            <p className="mt-4 text-lg text-[var(--text)] max-w-2xl code-prefix block" data-prefix=">">We make visuals that move people.</p>
+            <p className="mt-2 text-sm text-[var(--muted)] max-w-2xl">Photography, film, and design with editorial intention.</p>
 
-      <Section className="bg-slate/5">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4">
-          <div>
-            <p className="text-xs uppercase tracking-wide text-slate">Capabilities</p>
-            <h2 className="text-2xl font-serif">Services in motion</h2>
-          </div>
-          <TextLink to="/contact">Request a quote</TextLink>
+            <div className="mt-8 flex items-center gap-4">
+              <Button to="/contact" className="shadow-soft">Book a shoot</Button>
+              <Button variant="ghost" to="/work">View work</Button>
+            </div>
+          </header>
         </div>
-        <ServicesStrip
-          services={[
-            {
-              title: 'Photography',
-              detail: 'Editorial portraiture, campaigns, and on-location stories built around natural rhythm.'
-            },
-            {
-              title: 'Videography',
-              detail: 'Brand films, documentaries, and event coverage with intentional pacing and rich soundbeds.'
-            },
-            {
-              title: 'Music Videos',
-              detail: 'Narrative and performance-led videos with tight shotlists, bold lighting, and dynamic edits.'
-            },
-            {
-              title: 'Design',
-              detail: 'Identity systems, posters, album covers, and social visuals anchored by strong grids.'
-            }
-          ]}
-        />
-      </Section>
+      </section>
 
-      <Section>
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div>
-            <p className="text-xs uppercase tracking-wide text-slate">Approach</p>
-            <h2 className="text-2xl font-serif mb-4">Process with discipline</h2>
-            <p className="text-slate mb-6">
-              Every project moves through a tight cadence—listening, designing, capturing, refining. We keep crews lean,
-              communicate often, and obsess over the last 5%. Here is how we move.
-            </p>
-            <Button to="/contact">Start a project</Button>
-          </div>
-          <ProcessTimeline
-            steps={[
-              {
-                title: 'Discovery & Treatment',
-                description: 'We align on tone, references, and logistics before cameras roll. Treatments stay visual and concise.'
-              },
-              {
-                title: 'Pre-Production',
-                description: 'Shotlists, lighting maps, casting, and schedule. We keep the day nimble and the crew focused.'
-              },
-              {
-                title: 'Production',
-                description: 'Calm sets, confident direction, and clear audio capture. We leave space for improvisation.'
-              },
-              {
-                title: 'Post & Delivery',
-                description: 'Thoughtful edits, sound design, color passes, and tailored exports for web, socials, and print.'
-              }
-            ]}
-          />
+      {/* Belief */}
+      <section className="mx-auto max-w-4xl px-6 lg:py-16 py-12">
+        <div className="prose prose-invert text-[var(--muted)]">
+          <p className="font-mono text-sm uppercase tracking-wider">Our belief</p>
+          <h2 className="font-mono text-3xl text-[var(--text)]">We favour the right frame over many options.</h2>
+          <p>We believe in restraint. In light, in rhythm, in the pause between frames.</p>
+          <p>We shape work that reads on stage, in print, and on film. A clear idea, executed precisely.</p>
         </div>
-      </Section>
+      </section>
 
-      <Section className="bg-slate/5">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
-          <div>
-            <p className="text-xs uppercase tracking-wide text-slate">Voices</p>
-            <h2 className="text-2xl font-serif">Testimonials</h2>
+      {/* Services (typographic flow) */}
+      <section className="mx-auto max-w-6xl px-6 py-12">
+        <div className="grid grid-cols-12 gap-6 items-start">
+          <div className="col-span-12 md:col-span-4">
+            <p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">Services</p>
+            <h3 className="font-mono text-2xl text-[var(--text)]">What we do</h3>
           </div>
-          <TextLink to="/work">View case studies</TextLink>
-        </div>
-        <TestimonialBlock
-          testimonials={[
-            {
-              quote: 'nuViz listens first, then makes the frame feel inevitable. Every scene felt intentional.',
-              name: 'Mara Ellis',
-              role: 'Creative Lead, Halcyon'
-            },
-            {
-              quote: 'They direct with confidence but never lose the human energy. Our team trusted them instantly.',
-              name: 'Rico Alvarez',
-              role: 'Producer'
-            },
-            {
-              quote: 'Sharp eye for rhythm and pacing—our music video moves exactly how the track feels.',
-              name: 'LUNE',
-              role: 'Recording Artist'
-            }
-          ]}
-        />
-      </Section>
 
-      <Section>
-        <div className="grid gap-8 md:grid-cols-2 items-center">
-          <div>
-            <p className="text-xs uppercase tracking-wide text-slate">Ready</p>
-            <h2 className="text-2xl font-serif mb-3">Let’s build the next set</h2>
-            <p className="text-slate mb-5">
-              Tell us about the story you want to tell—brand launch, album drop, or tour recap. We respond within one business
-              day with a direction and timeline.
-            </p>
-            <div className="flex gap-3">
-              <Button to="/contact">Book a shoot</Button>
-              <Button variant="ghost" to="/about">
-                Meet the studio
-              </Button>
+          <div className="col-span-12 md:col-span-8 space-y-8">
+            <div className="flex gap-6 items-start">
+              <div className="w-14 flex-shrink-0">
+                <div className="font-mono text-lg text-[var(--accent-green)]">01</div>
+              </div>
+              <div>
+                <div className="font-mono text-xl text-[var(--text)]">Photography</div>
+                <div className="text-[var(--muted)] mt-1">Portraits and campaigns that feel inevitable.</div>
+              </div>
+            </div>
+
+            <div className="flex gap-6 items-start">
+              <div className="w-14 flex-shrink-0">
+                <div className="font-mono text-lg text-[var(--accent-green)]">02</div>
+              </div>
+              <div>
+                <div className="font-mono text-xl text-[var(--text)]">Filmmaking</div>
+                <div className="text-[var(--muted)] mt-1">Tactile, paced films that respect sound and silence.</div>
+              </div>
+            </div>
+
+            <div className="flex gap-6 items-start">
+              <div className="w-14 flex-shrink-0">
+                <div className="font-mono text-lg text-[var(--accent-green)]">03</div>
+              </div>
+              <div>
+                <div className="font-mono text-xl text-[var(--text)]">Music Videos</div>
+                <div className="text-[var(--muted)] mt-1">Performance-led visuals with cinematic cut.</div>
+              </div>
+            </div>
+
+            <div className="flex gap-6 items-start">
+              <div className="w-14 flex-shrink-0">
+                <div className="font-mono text-lg text-[var(--accent-green)]">04</div>
+              </div>
+              <div>
+                <div className="font-mono text-xl text-[var(--text)]">Design</div>
+                <div className="text-[var(--muted)] mt-1">Identity and packaging that sit calmly in bold contexts.</div>
+              </div>
             </div>
           </div>
-          <div className="border border-slate/30 rounded-subtle p-6 bg-white">
-            <h3 className="font-serif text-xl mb-2">Latest drops</h3>
-            <ul className="space-y-3 text-sm text-slate">
-              {allProjects.slice(0, 4).map(project => (
-                <li key={project.id} className="flex items-center justify-between">
-                  <span>{project.title}</span>
-                  <Link to={`/work/${project.slug}`} className="text-charcoal font-semibold underline">
-                    View
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        </div>
+      </section>
+
+      {/* Work / Approach */}
+      <section className="mx-auto max-w-7xl px-6 py-12">
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-7">
+            <ProjectGrid projects={allProjects.slice(0, 6)} />
+          </div>
+          <aside className="lg:col-span-5 pt-6">
+            <p className="font-mono text-xs uppercase tracking-wide text-[var(--muted)]">Approach</p>
+            <h3 className="font-mono text-2xl text-[var(--text)]">We make scenes, not slides.</h3>
+            <p className="text-[var(--muted)] mt-3">Listen. Plan. Light. Direct. Refine. We craft a single strong idea and carry it through production.</p>
+          </aside>
+        </div>
+      </section>
+
+      {/* Credibility */}
+      <section className="mx-auto max-w-6xl px-6 py-12">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-wider text-[var(--muted)]">Credibility</p>
+            <h4 className="font-mono text-lg text-[var(--text)]">Trusted by editors, labels, and studios</h4>
+          </div>
+          <div className="flex gap-6 items-center text-[var(--muted)] text-sm">
+            <span>Publication A</span>
+            <span>Label B</span>
+            <span>Studio C</span>
           </div>
         </div>
-      </Section>
+      </section>
+
+      {/* Quiet CTA */}
+      <section className="mx-auto max-w-6xl px-6 py-16 border-t border-[var(--accent-dim)]">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <h4 className="font-mono text-xl text-[var(--text)]">Start with a note and a reference track.</h4>
+            <p className="text-[var(--muted)] mt-2">We reply within one business day with a direction and timeline.</p>
+          </div>
+          <div className="mt-4 md:mt-0">
+            <Button to="/contact">Begin a project</Button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

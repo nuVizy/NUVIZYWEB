@@ -9,7 +9,7 @@ interface Props {
 const ProjectCard = ({ project }: Props) => (
   <Link
     to={`/work/${project.slug}`}
-    className="group block rounded-subtle overflow-hidden panel border-[rgba(0,255,65,0.04)]"
+    className="group block rounded-subtle overflow-hidden panel border-[var(--accent-dim)]"
   >
     <div className="aspect-video bg-gradient-to-b from-[rgba(0,0,0,0.15)] to-transparent overflow-hidden">
       <img
@@ -19,11 +19,11 @@ const ProjectCard = ({ project }: Props) => (
       />
     </div>
     <div className="p-4 space-y-2">
-      <div className="flex items-center justify-between text-xs uppercase tracking-wide text-neon-dim">
+      <div className="flex items-center justify-between text-xs uppercase tracking-wide text-[var(--muted)]">
         <span>{project.category}</span>
         <span>{project.year}</span>
       </div>
-      <h3 className="font-display text-xl leading-tight neon">{project.title}</h3>
+      <h3 className="font-mono text-xl leading-tight text-[var(--accent-green)]">{project.title}</h3>
       <p className="text-sm text-[var(--muted)]">{project.description}</p>
       <TagList tags={project.tags.slice(0, 3)} />
     </div>
