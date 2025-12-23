@@ -5,11 +5,17 @@ module.exports = {
     extend: {
       colors: {
         charcoal: '#222021',
-        slate: '#3E424B'
+        slate: '#3E424B',
+        'matrix-dark': '#0b0f0a',
+        neon: '#00FF41',
+        'neon-dim': '#00c43a',
+        cyan: '#5EEAD4'
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans: ['"Inter"', 'system-ui', 'sans-serif']
+        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        display: ['"Orbitron"', 'sans-serif'],
+        monoTech: ['"Share Tech Mono"', 'monospace']
       },
       borderRadius: {
         subtle: '6px'
