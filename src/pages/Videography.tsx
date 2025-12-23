@@ -2,93 +2,86 @@ import Section from '../components/ui/Section';
 import ProjectGrid from '../components/ui/ProjectGrid';
 import FAQAccordion from '../components/ui/FAQAccordion';
 import Button from '../components/ui/Button';
-import SectionHeading from '../components/ui/SectionHeading';
+import TextLink from '../components/ui/TextLink';
 import { videographyProjects } from '../content/portfolio';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 const Videography = () => {
-  usePageMeta({ title: 'Videography | nuViz Studio', description: 'Brand films and event coverage by nuViz Studio.' });
+  usePageMeta({ title: 'Videography | nuViz Studio', description: 'Film direction and cinematography by nuViz Studio.' });
 
   return (
     <div>
-      <Section className="pt-0 pb-0">
-        <div className="relative h-[320px] overflow-hidden rounded-none">
-          <img
-            src="https://assets.nuviz.studio/placeholders/video-hero.jpg"
-            alt="Videography hero"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="absolute inset-0 flex items-center">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 text-white space-y-4">
-              <p className="text-[12px] tracking-[0.24em] uppercase text-accent">Videography</p>
-              <h1>Films with pace, clarity, and restrained motion.</h1>
-              <h2 className="font-serif text-2xl text-gray-100">Brand films, event coverage, and docu-style shorts.</h2>
-              <p className="max-w-2xl text-gray-200">
-                Brand films, documentaries, and event coverage with intentional pacing and layered sound. We create agile setups that keep energy high and crew tight.
-              </p>
-              <div className="flex gap-3">
-                <Button to="/contact">Request a film</Button>
-                <Button variant="ghost" to="/work" className="border-white/60 text-white bg-white/10 hover:bg-white/20">
-                  View projects
-                </Button>
-              </div>
-            </div>
+      <Section className="pt-16">
+        <p className="text-xs uppercase tracking-wide text-slate">Videography</p>
+        <h1 className="text-4xl font-serif">Films that breathe, with crisp pacing.</h1>
+        <p className="text-slate mt-3 max-w-2xl">
+          Brand films, documentaries, and event coverage crafted with steady direction and polished post. We keep stories
+          human while keeping crews nimble.
+        </p>
+        <div className="mt-4 flex gap-3">
+          <Button to="/contact">Start a project</Button>
+          <Button variant="ghost" to="/music-videos">
+            See music videos
+          </Button>
+        </div>
+      </Section>
+
+      <Section className="bg-slate/5">
+        <div className="grid gap-8 lg:grid-cols-2 items-start">
+          <div>
+            <h2 className="text-2xl font-serif mb-2">Brand films & events</h2>
+            <p className="text-slate mb-4">
+              We choreograph camera, sound, and pacing to keep audiences close. Coverage spans keynotes, festivals, and launch
+              moments.
+            </p>
+            <ul className="space-y-2 text-sm text-slate list-disc list-inside">
+              <li>Shotlists built for coverage and emotion.</li>
+              <li>Audio capture and layered ambience for depth.</li>
+              <li>On-the-fly lighting adjustments to keep continuity.</li>
+            </ul>
+          </div>
+          <div className="border border-slate/30 rounded-subtle p-6 bg-white">
+            <h3 className="font-serif text-xl mb-3">Deliverables</h3>
+            <ul className="space-y-2 text-sm text-slate list-disc list-inside">
+              <li>Hero edits for web and broadcast.</li>
+              <li>Social cuts in 1:1, 9:16, and 16:9 ratios.</li>
+              <li>Clean captions, audio stems, and ProRes masters.</li>
+              <li>Color graded stills pulled from the footage.</li>
+            </ul>
+            <h4 className="font-semibold mt-4">Typical timelines</h4>
+            <p className="text-sm text-slate">Production in 1–3 days, first edit in 7 days, final masters in 12–18 days.</p>
           </div>
         </div>
       </Section>
 
       <Section>
         <div className="flex items-center justify-between mb-6">
-          <SectionHeading kicker="Highlights" title="Featured videography" description="Sequences built for screens big and small." />
-          <Button variant="ghost" to="/work">
-            Portfolio
-          </Button>
+          <h2 className="text-2xl font-serif">Selected films</h2>
+          <TextLink to="/work">View all work</TextLink>
         </div>
         <ProjectGrid projects={videographyProjects} />
       </Section>
 
-      <Section className="bg-slate/5">
-        <div className="grid gap-8 lg:grid-cols-2 items-start">
-          <div className="space-y-4">
-            <SectionHeading
-              kicker="Coverage"
-              title="Formats we love"
-              description="From intimate founder stories to high-tempo event recaps, each film is plotted around rhythm and clarity."
+      <Section className="bg-charcoal text-white">
+        <div className="grid gap-6 lg:grid-cols-2 items-center">
+          <div>
+            <h2 className="text-2xl font-serif mb-3">Process clarity</h2>
+            <FAQAccordion
+              items={[
+                { question: 'Crew size', answer: 'We scale between a two-person mobile unit and a full crew with G&E. We keep communication crisp either way.' },
+                { question: 'Revisions', answer: 'Two edit rounds are standard. We welcome early feedback to keep the cut aligned.' },
+                { question: 'Sound & music', answer: 'We shape bespoke soundbeds, capture nat sound, and clear music with your team or ours.' }
+              ]}
             />
-            <ul className="space-y-2 text-sm text-slate">
-              <li>Brand films with interview cadence and tactile product sequences.</li>
-              <li>Event coverage that favors momentum, key moments, and audience reaction.</li>
-              <li>Docu-style shorts with minimal setups and patient framing.</li>
-              <li>Delivery kits tuned for web, socials, and in-venue screens.</li>
-            </ul>
           </div>
-          <div className="border border-slate/30 rounded-subtle p-6 bg-white space-y-3">
-            <h3 className="font-serif text-xl">Deliverables & timelines</h3>
-            <ul className="space-y-2 text-sm text-slate">
-              <li>Pre-pro decks and shotlists within one week of kickoff.</li>
-              <li>Rough cuts in 7–10 business days; fine cuts within 14–18 days.</li>
-              <li>Exports include captions, aspect ratios, and audio mixes for each channel.</li>
-            </ul>
-            <Button to="/contact">Schedule a call</Button>
+          <div className="space-y-3">
+            <p className="text-gray-200">
+              Ready for cameras to roll? Share your script, brief, or treatment. We will respond with crew, gear list, and a
+              realistic schedule.
+            </p>
+            <Button to="/contact">Request a quote</Button>
+            <p className="text-sm text-gray-300">Prefer a walkthrough? We can join your production meeting to align.</p>
           </div>
-        </div>
-      </Section>
-
-      <Section>
-        <div className="grid gap-6 lg:grid-cols-2">
-          <SectionHeading
-            kicker="Notes"
-            title="FAQs"
-            description="What to expect when we roll cameras."
-          />
-          <FAQAccordion
-            items={[
-              { question: 'Crew size', answer: 'Lean crews of 3–6 keep us agile. We scale specialists only when the scene requires it.' },
-              { question: 'Audio', answer: 'We prioritize clean dialogue and layered atmos. Mixes deliver stereo and mono as needed.' },
-              { question: 'Color', answer: 'We grade for contrast and nuance, with filmic softness—never heavy-handed LUT dumps.' }
-            ]}
-          />
         </div>
       </Section>
     </div>

@@ -1,7 +1,6 @@
 import { FormEvent, useState } from 'react';
 import Section from '../components/ui/Section';
 import Button from '../components/ui/Button';
-import SectionHeading from '../components/ui/SectionHeading';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 interface FormState {
@@ -36,7 +35,7 @@ const Contact = () => {
   const validate = (): boolean => {
     const newErrors: Record<keyof FormState, string> = { name: '', email: '', projectType: '', budget: '', message: '' };
     if (!form.name.trim()) newErrors.name = 'Name is required';
-    if (!form.email.trim() || !/^\S+@\S+\.\S+$/.test(form.email)) newErrors.email = 'Valid email is required';
+    if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) newErrors.email = 'Valid email is required';
     if (!form.projectType) newErrors.projectType = 'Select a project type';
     if (!form.budget) newErrors.budget = 'Select a budget range';
     if (form.message.trim().length < 10) newErrors.message = 'Share a few more details';
@@ -58,15 +57,14 @@ const Contact = () => {
 
   return (
     <Section className="pt-16">
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
-        <div className="space-y-4">
-          <h1 className="sr-only">Contact nuViz</h1>
-          <SectionHeading
-            kicker="Contact"
-            title="Tell us what you are building"
-            description="Email studio@nuviz.studio or use the form. We are based in Brooklyn and often work in Toronto and Los Angeles."
-          />
-          <ul className="mt-2 text-sm text-slate space-y-1">
+      <div className="grid gap-8 lg:grid-cols-2">
+        <div>
+          <p className="text-xs uppercase tracking-wide text-slate">Contact</p>
+          <h1 className="text-4xl font-serif">Tell us what you are building.</h1>
+          <p className="text-slate mt-3 max-w-xl">
+            Email studio@nuviz.studio or use the form. We are based in Brooklyn and often work in Toronto and Los Angeles.
+          </p>
+          <ul className="mt-4 text-sm text-slate space-y-1">
             <li>Response within one business day.</li>
             <li>Transparent scopes and rights.</li>
             <li>Lean crews, premium delivery.</li>
@@ -76,7 +74,7 @@ const Contact = () => {
         <div className="border border-slate/30 rounded-subtle p-6 bg-white shadow-soft">
           {submitted ? (
             <div className="space-y-3">
-              <h2 className="font-serif text-2xl">We received your note.</h2>
+              <h2 className="font-serif text-2xl">We got it.</h2>
               <p className="text-slate">Thanks for reaching out. We will respond with next steps shortly.</p>
               <Button onClick={() => setSubmitted(false)}>Send another request</Button>
             </div>

@@ -5,11 +5,10 @@ module.exports = {
     extend: {
       colors: {
         charcoal: '#222021',
-        slate: '#3E424B',
-        accent: '#C7B9A6'
+        slate: '#3E424B'
       },
       fontFamily: {
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
         sans: ['"Inter"', 'system-ui', 'sans-serif']
       },
       borderRadius: {

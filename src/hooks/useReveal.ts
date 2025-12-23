@@ -6,12 +6,6 @@ export function useReveal(): { ref: React.RefObject<HTMLElement>; visible: boole
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      setVisible(true);
-      return;
-    }
-
     const element = ref.current;
     if (!element) return;
 
