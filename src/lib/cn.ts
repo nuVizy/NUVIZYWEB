@@ -1,6 +1,5 @@
-import { twMerge } from 'tailwind-merge'
-import { classNames } from './classNames'
+import { classNames } from "./classNames";
 
-export function cn(...inputs: Array<string | false | null | undefined>) {
-  return twMerge(classNames(...inputs))
+export function cn(...inputs: Array<string | undefined | null | false>) {
+  return classNames(...inputs);
 }
