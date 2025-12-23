@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #222021;
+  background-color: #ffffff;
+}
+
+body {
+  font-family: theme('fontFamily.sans');
+  letter-spacing: 0.01em;
+}
+
+h1, h2, h3, h4 {
+  font-family: theme('fontFamily.serif');
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
